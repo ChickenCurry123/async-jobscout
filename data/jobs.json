@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Senior Python Developer",
+    "company": "Payne, Roberts and Davis",
+    "location": "Stewartbury, AA",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/senior-python-developer-0.html"
+  },
+  {
+    "id": 11,
+    "title": "Software Engineer (Python)",
+    "company": "Garcia PLC",
+    "location": "Ericberg, AE",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/software-engineer-python-10.html"
+  },
+  {
+    "id": 21,
+    "title": "Python Programmer (Entry-Level)",
+    "company": "Moss, Duncan and Allen",
+    "location": "Port Sara, AE",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/python-programmer-entry-level-20.html"
+  },
+  {
+    "id": 31,
+    "title": "Python Programmer (Entry-Level)",
+    "company": "Cooper and Sons",
+    "location": "West Victor, AE",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/python-programmer-entry-level-30.html"
+  },
+  {
+    "id": 41,
+    "title": "Software Developer (Python)",
+    "company": "Adams-Brewer",
+    "location": "Brockburgh, AE",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/software-developer-python-40.html"
+  },
+  {
+    "id": 51,
+    "title": "Python Developer",
+    "company": "Rivera and Sons",
+    "location": "East Michaelfort, AA",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/python-developer-50.html"
+  },
+  {
+    "id": 61,
+    "title": "Back-End Web Developer (Python, Django)",
+    "company": "Stewart-Alexander",
+    "location": "South Kimberly, AA",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/back-end-web-developer-python-django-60.html"
+  },
+  {
+    "id": 71,
+    "title": "Back-End Web Developer (Python, Django)",
+    "company": "Jackson, Ali and Mckee",
+    "location": "New Elizabethside, AA",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/back-end-web-developer-python-django-70.html"
+  },
+  {
+    "id": 81,
+    "title": "Python Programmer (Entry-Level)",
+    "company": "Mathews Inc",
+    "location": "Robertborough, AP",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/python-programmer-entry-level-80.html"
+  },
+  {
+    "id": 91,
+    "title": "Software Developer (Python)",
+    "company": "Moreno-Rodriguez",
+    "location": "Martinezburgh, AE",
+    "scrapedAt": "16 November 2026",
+    "applyLink": "https://realpython.github.io/fake-jobs/jobs/software-developer-python-90.html"
+  }
+]

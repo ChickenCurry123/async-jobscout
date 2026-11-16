@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOBSCOUT™ — Code by RaihanR</title>
+    <!-- Google Fonts: Syne & Space Grotesk / JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #080808;
+            color: #E1E1E1;
+        }
+        .font-heading {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+        .font-mono-custom {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Grid background effect */
+        .bg-grid-lines {
+            background-size: 100px 100px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+        /* Ambient Glow effect */
+        .ambient-glow {
+            background: radial-gradient(circle at 20% 80%, rgba(180, 40, 0, 0.25), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(229, 255, 0, 0.08), transparent 40%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-grid-lines ambient-glow min-h-screen flex flex-col justify-between selection:bg-[#E5FF00] selection:text-black">
+
+    <!-- Top Navigation -->
+    <header class="border-b border-neutral-800 backdrop-blur-md sticky top-0 z-50 bg-[#080808]/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo with Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-4 h-4 bg-[#E5FF00] rotate-45"></div>
+                <div class="flex flex-col">
+                    <span class="font-heading font-extrabold text-2xl tracking-tighter text-white leading-none">JOBSCOUT<span class="text-[#E5FF00]">™</span></span>
+                    <span class="text-[10px] font-mono-custom text-neutral-400 tracking-widest mt-1 uppercase">CODE BY RAIHANR</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-xs font-mono-custom uppercase tracking-widest text-neutral-400">
+                <button onclick="searchJobs()" class="hover:text-white transition">Crawl Engine</button>
+                <button onclick="fetchSavedJobs()" class="hover:text-white transition">Saved Jobs <span id="savedBadge" class="bg-neutral-800 text-[#E5FF00] px-1.5 py-0.5 rounded text-[10px]">JSON</span></button>
+                <button onclick="fetchLogs()" class="hover:text-white transition">System Logs</button>
+            </nav>
+
+            <!-- Status Indicator -->
+            <div class="flex items-center gap-2 border border-neutral-800 px-3 py-1.5 rounded-full text-xs font-mono-custom bg-neutral-900/50">
+                <span class="w-2 h-2 rounded-full bg-[#E5FF00] animate-pulse"></span>
+                <span class="text-neutral-300">ASYNC 24/7</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-1 w-full">
+        
+        <!-- Hero Section -->
+        <section class="mb-16 border-b border-neutral-800 pb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-[11px] font-mono-custom text-black bg-[#E5FF00] px-2 py-0.5 font-bold uppercase tracking-wider">CODE BY RAIHANR</span>
+                        <span class="text-xs font-mono-custom text-neutral-500 uppercase tracking-widest">// NON-BLOCKING CRAWLER ENGINE</span>
+                    </div>
+
+                    <!-- Judul dibuat warna hitam dengan latar highlight terang agar tetap sangat jelas dibaca -->
+                    <h1 class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl text-black leading-none bg-[#E5FF00] inline-block p-4 tracking-tighter">
+                        ASYNC JOB <br> SCOUT ENGINE
+                    </h1>
+                </div>
+                <p class="text-neutral-400 max-w-sm text-sm leading-relaxed font-mono-custom">
+                    Platform ekstraksi lowongan kerja asinkron berbasis Event Loop Node.js, EventEmitter, dan pencatatan File System I/O otomatis.
+                </p>
+            </div>
+
+            <!-- Brutalist Search Console -->
+            <div class="bg-neutral-900/70 border border-neutral-800 p-2 md:p-3 flex flex-col md:flex-row gap-3 shadow-2xl backdrop-blur-xl">
+                <div class="flex-1 flex items-center bg-black/60 border border-neutral-800 px-4 py-3">
+                    <span class="text-[#E5FF00] font-mono-custom mr-3 text-sm">&gt;_</span>
+                    <input type="text" id="keywordInput" value="python" placeholder="Ketik kata kunci (misal: python, developer, engineer)..." 
+                        class="w-full bg-transparent text-white font-mono-custom text-sm focus:outline-none placeholder-neutral-600">
+                </div>
+                <button onclick="searchJobs()" 
+                    class="bg-[#E5FF00] hover:bg-[#d8f000] text-black font-heading font-extrabold px-8 py-4 text-sm tracking-wider transition uppercase flex items-center justify-center gap-2">
+                    <span>EXECUTE CRAWL</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Status & Console Bar -->
+        <div id="statusConsole" class="mb-8 font-mono-custom text-xs p-4 border border-neutral-800 bg-black/80 flex items-center justify-between text-neutral-400">
+            <div class="flex items-center gap-3">
+                <span class="text-[#E5FF00]">[SYSTEM READY]</span>
+                <span id="statusText">Server siap menerima instruksi crawling.</span>
+            </div>
+            <span id="statusTime" class="text-neutral-600 hidden sm:inline">--:--:--</span>
+        </div>
+
+        <!-- Data Display Grid -->
+        <section>
+            <div class="flex justify-between items-center mb-6 border-b border-neutral-800/60 pb-3">
+                <h2 class="font-heading font-bold text-xl text-white tracking-tight flex items-center gap-2">
+                    <span>RESULTS</span>
+                    <span id="resultCount" class="text-xs font-mono-custom text-neutral-500 border border-neutral-800 px-2 py-0.5">(0 items)</span>
+                </h2>
+                <div class="flex gap-2">
+                    <button onclick="fetchSavedJobs()" class="text-xs font-mono-custom px-3 py-1.5 border border-neutral-800 hover:border-neutral-600 text-neutral-300 transition">Lihat jobs.json</button>
+                    <button onclick="fetchLogs()" class="text-xs font-mono-custom px-3 py-1.5 border border-neutral-800 hover:border-neutral-600 text-neutral-300 transition">Lihat activity.log</button>
+                </div>
+            </div>
+
+            <!-- Cards Container -->
+            <div id="dataContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Banner / Footer -->
+    <footer class="border-t border-neutral-800 bg-[#080808]/90 py-6 mt-16">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono-custom text-neutral-500">
+            <div>
+                <span class="text-white font-bold">JOBSCOUT ARCHITECTURE</span> — Designed & Developed by <span class="text-[#E5FF00] font-bold">Code by RaihanR</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-neutral-600">STATUS 200 OK</span>
+                <div class="w-2 h-2 bg-[#E5FF00]"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic Integration -->
+    <script>
+        function updateStatus(message, isError = false) {
+            const statusText = document.getElementById('statusText');
+            const statusConsole = document.getElementById('statusConsole');
+            const statusTime = document.getElementById('statusTime');
+
+            statusText.innerText = message;
+            statusTime.innerText = new Date().toLocaleTimeString();
+
+            if (isError) {
+                statusConsole.className = "mb-8 font-mono-custom text-xs p-4 border border-red-800/60 bg-red-950/20 flex items-center justify-between text-red-400";
+            } else {
+                statusConsole.className = "mb-8 font-mono-custom text-xs p-4 border border-neutral-800 bg-black/80 flex items-center justify-between text-neutral-400";
+            }
+        }
+
+        async function searchJobs() {
+            const keyword = document.getElementById('keywordInput').value.trim() || 'python';
+            const container = document.getElementById('dataContainer');
+            const resultCount = document.getElementById('resultCount');
+
+            updateStatus(`Memproses crawling asinkron untuk keyword '${keyword}'...`);
+            container.innerHTML = `
+                <div class="col-span-full border border-neutral-800 p-12 text-center font-mono-custom text-neutral-500">
+                    <div class="w-6 h-6 border-2 border-[#E5FF00] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    Executing non-blocking HTTP fetch & Cheerio DOM parser...
+                </div>
+            `;
+
+            try {
+                const res = await fetch(`/api/v1/jobs/search?keyword=${encodeURIComponent(keyword)}`);
+                const result = await res.json();
+
+                if (result.status === 'success') {
+                    updateStatus(`[SUCCESS] Ditemukan ${result.total} lowongan. Event 'job:crawled' dipicu.`);
+                    resultCount.innerText = `(${result.total} items)`;
+                    renderJobCards(result.data);
+                } else {
+                    updateStatus(`[ERROR] ${result.message}`, true);
+                }
+            } catch (err) {
+                updateStatus(`[NETWORK ERROR] ${err.message}`, true);
+            }
+        }
+
+        async function fetchSavedJobs() {
+            const container = document.getElementById('dataContainer');
+            const resultCount = document.getElementById('resultCount');
+
+            updateStatus('Membaca data tersimpan langsung dari berkas disk data/jobs.json...');
+            
+            try {
+                const res = await fetch('/api/v1/jobs/saved');
+                const result = await res.json();
+
+                if (result.status === 'success') {
+                    updateStatus(`[DISK READ] Berhasil membaca ${result.total} data dari jobs.json.`);
+                    resultCount.innerText = `(${result.total} saved items)`;
+                    renderJobCards(result.data);
+                } else {
+                    updateStatus(`[FAIL] ${result.message}`, true);
+                    container.innerHTML = `<div class="col-span-full border border-neutral-800 p-8 text-neutral-500 font-mono-custom">${result.message}</div>`;
+                }
+            } catch (err) {
+                updateStatus(`[ERROR] Gagal membaca file: ${err.message}`, true);
+            }
+        }
+
+        async function fetchLogs() {
+            const container = document.getElementById('dataContainer');
+            const resultCount = document.getElementById('resultCount');
+
+            updateStatus('Membaca catatan event dari berkas disk data/activity.log...');
+            resultCount.innerText = '(log stream)';
+
+            try {
+                const res = await fetch('/api/v1/logs');
+                const logText = await res.text();
+
+                container.innerHTML = `
+                    <div class="col-span-full border border-neutral-800 bg-black p-6 font-mono-custom text-xs text-neutral-300 leading-relaxed overflow-x-auto whitespace-pre-wrap">
+                        <div class="text-[#E5FF00] mb-4">// RAW LOG STREAM FROM data/activity.log</div>
+                        ${logText}
+                    </div>
+                `;
+            } catch (err) {
+                updateStatus(`[ERROR] Gagal membaca log: ${err.message}`, true);
+            }
+        }
+
+        function renderJobCards(jobs) {
+            const container = document.getElementById('dataContainer');
+            if (!jobs || jobs.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full border border-neutral-800 p-12 text-center font-mono-custom text-neutral-500">
+                        Tidak ada data lowongan ditemukan.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = jobs.map(job => `
+                <div class="border border-neutral-800 bg-neutral-900/40 p-6 flex flex-col justify-between hover:border-[#E5FF00]/50 transition group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-[#E5FF00] opacity-0 group-hover:opacity-100 transition"></div>
+                    
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-3">
+                            <span class="text-[10px] font-mono-custom text-neutral-500 border border-neutral-800 px-2 py-0.5 uppercase">JOB #${job.id}</span>
+                            <span class="text-xs font-mono-custom text-neutral-400">${job.location}</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-[#E5FF00] transition mb-2">${job.title}</h3>
+                        <p class="text-neutral-400 font-mono-custom text-xs mb-6">${job.company}</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-neutral-800/80 flex items-center justify-between text-xs font-mono-custom">
+                        <span class="text-neutral-600 text-[11px]">${job.scrapedAt}</span>
+                        <a href="${job.applyLink}" target="_blank" class="text-white hover:text-[#E5FF00] font-bold tracking-wider flex items-center gap-1 transition">
+                            APPLY 
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Auto crawl saat halaman dimuat
+        searchJobs();
+    </script>
+</body>
+</html>
